@@ -1,7 +1,6 @@
 <template>
     <div>
-  
-
+      <!-- Nuevo select para elegir el personaje -->
       <select v-model="personajeSeleccionado">
         <option v-for="hero in heroes" :key="hero.id" :value="hero">
           {{ hero.name }}
@@ -27,7 +26,7 @@
   export default {
     data() {
       return {
-        heroes: [], 
+        heroes: [], // Almacenará los personajes obtenidos de la API
         personajeSeleccionado: null
       };
     },
@@ -35,12 +34,16 @@
       async obtenerPersonajes() {
         const publicApiKey = 'ea871d53fc24840457d62779175612df';
         const hash = '67d75cd3786a536d58e452fb82395b5e';
-
-        const search_url = `https://gateway.marvel.com/v1/public/characters?nameStartsWith=Hulk&ts=1&apikey=${publicApiKey}&hash=${hash}`;
+        const characterIds = [1009351, 1009368, 1009220, 1009664, 1009610];
+  
+        const promises = characterIds.map(id => {
+          const search_url = `https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${publicApiKey}&hash=${hash}`;
+          return axios.get(search_url);
+        });
   
         try {
-          const response = await axios.get(search_url);
-          this.heroes = response.data.data.results;
+          const responses = await Promise.all(promises);
+          this.heroes = responses.map(response => response.data.data.results[0]);
         } catch (error) {
           console.error(error);
         }
