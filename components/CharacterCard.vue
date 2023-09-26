@@ -1,5 +1,6 @@
 <template>
-    <div class="character-card" @click="showDetails">
+
+    <div class="character-card" >
         <center>
             <div class="character-image-container">
                 <img v-if="character.thumbnail" :src="character.thumbnail.path + '.' + character.thumbnail.extension" alt=""
@@ -47,12 +48,9 @@ import { ref } from 'vue';
 const character = ref(null);
 const isClicked = ref(false);
 
-const showDetails = () => {
-    console.log('Mostrando detalles de:', character.value.name);
-    isClicked.value = !isClicked.value;
-}
 
-export { character, showDetails, isClicked };
+
+
 
 export default {
     props: ['character'],

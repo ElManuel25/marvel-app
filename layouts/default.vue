@@ -9,13 +9,18 @@
       <div class="navbar">
         <!-- Logo a la izquierda -->
         <div class="logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png" alt="Logo Marvel">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
+            alt="Logo Marvel">
         </div>
         <!-- Texto en el centro -->
         <div class="title-container">
           <div class="title">
             Marvel Heroes
           </div>
+        </div>
+        <!-- Nueva div para el GIF -->
+        <div class="gif-container">
+          <img src="https://media.tenor.com/Q4qyZizrNGMAAAAj/thor-love-and-thunder-marvel-studios.gif" alt="GIF" class="gif-image">
         </div>
       </div>
 
@@ -41,6 +46,8 @@
 .right-margin {
   flex: 1;
   background-image: repeating-linear-gradient(rgb(253, 0, 0), #f2ff00 15%, #ff0000 30%);
+  min-height: 100%;
+  /* Asegura que el contenedor tenga un tamaño mínimo */
 }
 
 .page-content {
@@ -72,7 +79,8 @@
 }
 
 main {
-  flex-grow: 1; /* Ocupa todo el espacio disponible */
+  flex-grow: 1;
+  /* Ocupa todo el espacio disponible */
 }
 
 .slot-container {
@@ -81,4 +89,9 @@ main {
   align-items: center;
   justify-content: center;
 }
+  
+.gif-image {
+  max-width: 50px; /* Cambia el tamaño máximo del GIF según lo necesites */
+}
+
 </style>
