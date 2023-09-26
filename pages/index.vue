@@ -9,7 +9,7 @@
 
 <script>
 import CharacterCard from '@/components/CharacterCard.vue';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import axios from "axios";
 
 const Hash = '67d75cd3786a536d58e452fb82395b5e';
@@ -18,19 +18,18 @@ const characters = ref([]);
 const originalCharacters = ref([]);
 const searchTerm = ref('');
 
-const loadCharacters = async () => {
-  const url = `https://gateway.marvel.com:443/v1/public/characters?limit=100&ts=1&apikey=${publicKeys}&hash=${Hash}`;
+const loadCharacters = async (offset) => {
+  const url = `https://gateway.marvel.com:443/v1/public/characters?limit=100&offset=${offset}&ts=1&apikey=${publicKeys}&hash=${Hash}`;
   const { data } = await axios.get(url);
   const charactersWithImages = data.data.results.filter(character => {
     return character.thumbnail.path !== "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
   });
-  characters.value = charactersWithImages;
-  originalCharacters.value = charactersWithImages; // Copia de seguridad de la lista original
+  characters.value = [...characters.value, ...charactersWithImages];
+  originalCharacters.value = [...originalCharacters.value, ...charactersWithImages]; 
 }
 
 const showDetails = (character) => {
   console.log('Mostrando detalles de:', character.name);
-  // Puedes mostrar los detalles del personaje aquí
 }
 
 const filterCharacters = () => {
@@ -43,7 +42,6 @@ const filterCharacters = () => {
   }
 }
 
-
 const filteredCharacters = computed(() => {
   return characters.value.filter(character => {
     return character.name.toLowerCase().startsWith(searchTerm.value.toLowerCase());
@@ -55,7 +53,12 @@ export default {
     CharacterCard
   },
   setup() {
-    loadCharacters();
+    onMounted(async () => {
+      for (let i = 0; i < 10; i++) {
+        await loadCharacters(i * 100);
+      }
+    });
+
     return {
       characters,
       showDetails,
