@@ -40,7 +40,7 @@
 .left-margin,
 .right-margin {
   flex: 1;
-  background-color: #e40f0f;
+  background-image: repeating-linear-gradient(rgb(253, 0, 0), #f2ff00 15%, #ff0000 30%);
 }
 
 .page-content {
