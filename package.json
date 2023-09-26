@@ -18,6 +18,7 @@
     "vuetify-nuxt-module": "^0.5.7"
   },
   "dependencies": {
-    "axios": "^1.5.0"
+    "axios": "^1.5.0",
+    "vuetify": "^3.3.17"
   }
 }
