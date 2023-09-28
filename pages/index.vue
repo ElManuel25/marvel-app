@@ -54,7 +54,7 @@ export default {
   },
   setup() {
     onMounted(async () => {
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 17; i++) {
         await loadCharacters(i * 100);
       }
     });
@@ -90,5 +90,6 @@ export default {
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 300px;
+  background-color: azure;
 }
 </style>

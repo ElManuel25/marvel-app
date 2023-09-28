@@ -1,6 +1,5 @@
 <template>
-
-    <div class="character-card" >
+    <div class="character-card">
         <center>
             <div class="character-image-container">
                 <img v-if="character.thumbnail" :src="character.thumbnail.path + '.' + character.thumbnail.extension" alt=""
@@ -72,15 +71,23 @@ export default {
   
 <style scoped>
 .character-card {
-    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 20px;
-    border: 2px solid #333;
+    margin: 20px;
+    border: 2px solid #ffd900;
     transition: transform 0.2s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0);
+
+    transition: box-shadow 0.3s;
+    filter: brightness(80%);
+
+    transition: filter 0.3s;
+    background-image: linear-gradient(45deg, #9f9f9f 25%, #9f9f9f 25%, #9f9f9f 50%, #888888 50%, #888888 75%, #9f9f9f 75%, #9f9f9f 100%);
+    background-size: 200% 200%;
+    transition: background-position 0.3s;
 }
 
 .character-image-container {
@@ -98,14 +105,19 @@ export default {
 }
 
 .character-name {
-    font-size: 1.5em;
+    font-size: 30px;
     font-weight: bold;
+    color: #ffc107;
+
+    border-bottom: 2px solid #ffc107;
+
     margin-bottom: 10px;
+
 }
 
 .character-description {
     font-size: 1.1em;
-    color: #555;
+    color: #ff0000;
     margin-bottom: 15px;
     text-align: justify;
 }
@@ -139,24 +151,31 @@ export default {
     font-size: 24px;
     font-weight: bold;
     margin-top: 20px;
-    color: #333;
+    color: #ffc107;
 }
 
-.first-three-series {
-    list-style: none;
-    padding: 0;
+.first-three-series-title {
     font-size: 20px;
-    color: #333;
+
+    border-bottom: 2px solid #ffc107;
+
+    padding-bottom: 10px;
+
 }
 
 .first-three-series li {
-    margin-bottom: 10px;
-    color: #680000;
+    list-style-type: none;
+
+    font-size: 18px;
+
 }
 
 .character-card:hover {
     transform: scale(1.05);
     cursor: pointer;
+    box-shadow: 0 0 10px rgb(255, 1, 1);
+    filter: brightness(100%);
+    background-position: right bottom;
 }
 
 .character-card.clicked {
